@@ -6,6 +6,6 @@ stages:
 build:
     stage: build
     script:
-        - yarn install
-        - yarn build
+        - npm install
+        - npm build
         - echo "Build successful."
