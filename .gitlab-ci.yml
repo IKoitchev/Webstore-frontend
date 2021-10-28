@@ -6,6 +6,7 @@ stages:
 build:
     stage: build
     script:
+        - cd web-store
         - npm install
         - npm build
         - echo "Build successful."
