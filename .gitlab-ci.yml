@@ -1,0 +1,11 @@
+image: node:latest
+
+stages:
+    - build
+
+build:
+    stage: build
+    script:
+        - yarn install
+        - yarn build
+        - echo "Build successful."
