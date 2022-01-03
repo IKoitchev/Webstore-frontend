@@ -1,0 +1,23 @@
+.nvbr-container {
+  margin: 20px;
+  height: 40px;
+  line-height: 35px;
+  text-align: center;
+}
+.navbar .navbar-brand {
+  color: white;
+}
+nav .navbar-nav a {
+  color: crimson;
+  vertical-align: middle;
+  display: inline;
+  margin-left: 0px;
+  font-size: large;
+}
+.navbar-brand {
+  margin: 5px;
+}
+#profile {
+  margin-left: auto;
+  margin-right: 0px;
+}

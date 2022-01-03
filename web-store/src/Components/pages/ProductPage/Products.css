@@ -1,0 +1,29 @@
+.filter-container {
+  /* border-style: solid;
+  border-width: 5px;
+  background-color: cyan;
+  max-width: 400px;
+  width: 20%; */
+  min-height: 300px;
+  width: 20%;
+  float: left;
+  padding: 20px;
+  border: 2px solid red;
+}
+.products-container {
+  width: 79%;
+  min-width: 500px;
+  float: left;
+  padding: 20px;
+  border: 2px solid red;
+  margin-left: 10px;
+}
+.page-container {
+  border: 3px solid #fff;
+  padding: 20px;
+}
+.btn {
+  width: 100%;
+  float: center;
+  margin: 5px;
+}

@@ -1,12 +1,25 @@
-import React from "react";
-import Navbar from "react-bootstrap/Navbar";
+import React, { Profiler } from "react";
+import { Navbar, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./Navbar.css";
+// import profile from ;
 
 function NavBar() {
   return (
-    <Navbar bg="dark" variant="dark">
-      <Navbar.Brand>Logo</Navbar.Brand>
-    </Navbar>
+    <div className="nvbr-container">
+      <Navbar bg="dark" variant="white" fixed="top">
+        <Navbar.Brand> Video Game Store</Navbar.Brand>
+        <Nav>
+          <Nav.Link href="/home">Home</Nav.Link>
+          <Nav.Link href="/products">Products</Nav.Link>
+        </Nav>
+        <Nav id="profile">
+          <Nav.Link href="/profile">
+            <img className="img-thumbnail" src="/images/profile-picture.jpg" />
+          </Nav.Link>
+        </Nav>
+      </Navbar>
+    </div>
   );
 }
 
