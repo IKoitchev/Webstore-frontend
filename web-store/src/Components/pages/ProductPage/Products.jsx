@@ -15,7 +15,7 @@ function Products() {
   let distinctGenres = [];
 
   async function getAllProducts() {
-    await axios.get("games/all").then((resp) => {
+    await axios.get("http://localhost:8080/games/all").then((resp) => {
       const result = resp.data;
       setProducts(result);
     });

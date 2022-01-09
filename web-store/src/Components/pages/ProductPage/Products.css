@@ -17,6 +17,7 @@
   padding: 20px;
   border: 2px solid red;
   margin-left: 10px;
+  min-height: 600px;
 }
 .page-container {
   border: 3px solid #fff;

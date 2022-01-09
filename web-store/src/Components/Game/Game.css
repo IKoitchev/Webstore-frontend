@@ -3,4 +3,39 @@
   min-width: 250px;
   float: left;
   margin: 35px !important;
+  min-height: 250px;
+  position: relative;
+  border-color: #198754;
+}
+.card-img {
+  border-top: #198754 !important;
+  border-top: groove !important;
+  border-top: 2px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 230px;
+  object-fit: contain;
+}
+.card-body {
+  border-top: #198754 !important;
+  border-top: groove !important;
+  border-top: 2px;
+}
+
+.accordion-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: auto;
+  background-color: #198754;
+  color: white;
+}
+.accordion-button:not(.collapsed) {
+  background-color: #198754;
+  color: white;
+}
+.accordion-button::after,
+.accordion-button::before {
+  color: white;
 }

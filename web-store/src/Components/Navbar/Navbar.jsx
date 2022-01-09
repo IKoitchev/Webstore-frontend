@@ -10,8 +10,9 @@ function NavBar() {
       <Navbar bg="dark" variant="white" fixed="top">
         <Navbar.Brand> Video Game Store</Navbar.Brand>
         <Nav>
-          <Nav.Link href="/home">Home</Nav.Link>
+          <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/products">Products</Nav.Link>
+          <Nav.Link href="/chat">Chat Room</Nav.Link>
         </Nav>
         <Nav id="profile">
           <Nav.Link href="/profile">

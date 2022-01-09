@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  NavLink,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import authService from "../../services/auth.service";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
@@ -13,12 +8,17 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) => {
         if (authService.getCurrentUser()) {
-          return <Component {...props} />;
+          const userName = authService.getCurrentUser().username;
+          const email = authService.getCurrentUser().email;
+
+          return (
+            <Component {...props} user={{ userName: userName, email: email }} />
+          );
         } else {
           return (
             <Redirect
               to={{
-                pathname: "/",
+                pathname: "/login",
                 state: {
                   from: props.location,
                 },

@@ -23,7 +23,7 @@ export default class Login extends Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
-
+    console.log("login constructor");
     this.state = {
       username: "",
       password: "",
