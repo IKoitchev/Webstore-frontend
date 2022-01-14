@@ -1,12 +1,38 @@
 image: node:latest
 
 stages:
-    - build
+  - build
+  - docker
+  - test
+  
 
 build:
-    stage: build
-    script:
-        - cd web-store
-        - npm install
-        - npm build
-        - echo "Build successful."
+  stage: build
+  image: node
+  script: 
+    - echo "Start building App"
+    - cd web-store
+    - npm install
+    - npm build
+    - echo "Build successfully!"
+
+docker:
+  stage: docker
+  image: docker:latest
+  services: 
+    - name: docker:19.03.8-dind
+  script:
+    - docker run -it -p 3000:3000 frontend
+
+test:
+  stage: test
+  image: node
+  script:
+    - cd web-store
+    - echo "Testing App"
+    - npm install
+    - npm run cypress:ci
+    - echo "Test successfully!"
+
+
+    

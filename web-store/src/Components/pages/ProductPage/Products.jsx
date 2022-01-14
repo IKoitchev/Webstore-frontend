@@ -1,88 +1,113 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Game from "../../Game/Game";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import NavBar from "../../Navbar/Navbar";
 import "./Products.css";
 import { Button } from "react-bootstrap";
 import GenreFilter from "./GenreFilter/genre.filter";
+import { BASE_URL } from "../../websocket/api/baseApi";
+import authHeader from "../../../services/auth-header";
 
 function Products() {
   const [products, setProducts] = useState([]);
 
   const loadingMessage = "Loading Page...";
 
-  let fullProductsList;
+  //this list doesnt change when using search/filter
+  const fullProductsList = useRef();
   let distinctGenres = [];
 
-  async function getAllProducts() {
-    await axios.get("http://localhost:8080/games/all").then((resp) => {
-      const result = resp.data;
-      setProducts(result);
-    });
+  function getAllProducts() {
+    axios
+      .get("http://localhost:8080/games/all")
+      .then((resp) => {
+        fullProductsList.current = resp.data;
+        setProducts(resp.data);
+        console.log(resp.data);
+      })
+      .catch((err) => {});
   }
 
   useEffect(() => {
     getAllProducts();
   }, []);
 
+  const onDeleteAdmin = (id) => {
+    axios
+      .delete(`${BASE_URL}/games/delete/${id}`, { headers: authHeader() })
+      .then((res) => {
+        console.log(res);
+        setProducts(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   function getDistinctGenres() {
-    console.log(fullProductsList);
-    if (fullProductsList) {
+    if (fullProductsList.current) {
       var flags = [],
         output = [],
-        l = fullProductsList.length,
+        l = fullProductsList.current.length,
         i;
       for (i = 0; i < l; i++) {
-        if (flags[fullProductsList[i].genre]) continue;
-        flags[fullProductsList[i].genre] = true;
-        output.push(fullProductsList[i].genre);
+        if (flags[fullProductsList.current[i].genre]) continue;
+        flags[fullProductsList.current[i].genre] = true;
+        output.push(fullProductsList.current[i].genre);
       }
-      console.log("distinct genres");
+
       distinctGenres = output;
     }
   }
-  function setFullProductsList() {
-    console.log(typeof fullProductsList);
-    if (!fullProductsList && products.length > 0) {
-      fullProductsList = products;
-      getDistinctGenres();
-      console.log("setFullProductsList");
-    }
-    return <></>;
-  }
-  function getFilteredProducts(name, genre) {
-    if (name) {
-      const filteredProducts = [];
 
-      products.forEach((p) => {
+  function getFilteredProducts(name, genre) {
+    // as we have 2 sources of filter conditions, the name and genre search, there are 4 options for their values
+
+    let filteredProducts = [];
+
+    //both undefined
+    if (!name && !genre) {
+      filteredProducts = fullProductsList();
+    }
+    //name present only
+    else if (name && !genre) {
+      fullProductsList.current.forEach((p) => {
         if (p.name.toLowerCase().includes(name.toLowerCase())) {
           filteredProducts.push(p);
         }
       });
-      setProducts(filteredProducts);
     }
-    if (genre) {
-      const filteredProducts = [];
-      products.forEach((p) => {
+    //genre present only
+    else if (!name && genre) {
+      fullProductsList.current.forEach((p) => {
         if (p.genre.toLowerCase().includes(genre.toLowerCase())) {
           filteredProducts.push(p);
         }
       });
-      setProducts(filteredProducts);
     }
-
-    // dropdown filter
+    //both present
+    else {
+      fullProductsList.current.forEach((p) => {
+        if (
+          p.genre.toLowerCase().includes(genre.toLowerCase()) &&
+          p.name.toLowerCase().includes(name.toLowerCase())
+        ) {
+          filteredProducts.push(p);
+        }
+      });
+    }
+    setProducts(filteredProducts);
   }
+
   const handleSearch = () => {
     const searchedName = document.getElementById("searchbox").value;
     const genre = document.getElementById("dropdown").value;
-    console.log(genre);
-    //console.log("searched: " + searchedName);
 
     if (!searchedName && !genre && genre !== "Filter by genre...") {
-      getAllProducts();
+      setProducts(fullProductsList.current);
     } else {
-      getFilteredProducts(searchedName, genre); //genre argument to be added
+      getFilteredProducts(searchedName, genre);
     }
   };
 
@@ -105,14 +130,20 @@ function Products() {
             <></>
           ) : (
             <>
-              {setFullProductsList()}
-              {console.log(fullProductsList)}
-              {console.log(products)}
+              {getDistinctGenres()}
+
               <GenreFilter genres={distinctGenres} onFilter={handleSearch} />
             </>
           )}
 
-          <Button variant="success">Upload game</Button>
+          {/* <Button variant="success" onClick={}>Upload game</Button> */}
+          <Link
+            to="/product-form"
+            className="btn btn-primary"
+            variant="success"
+          >
+            Upload a product
+          </Link>
         </div>
 
         <div className="products-container">
@@ -121,7 +152,9 @@ function Products() {
           ) : (
             <>
               {products.map((p) => {
-                return <Game product={p} key={p.id} />;
+                return (
+                  <Game product={p} key={p.id} onDeleteAdmin={onDeleteAdmin} />
+                );
               })}
             </>
           )}

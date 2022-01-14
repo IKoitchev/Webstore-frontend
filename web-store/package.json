@@ -31,13 +31,16 @@
     "web-vitals": "^1.1.2"
   },
   "devDependencies": {
+    "cypress": "^9.2.1",
     "react-scripts": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress": "./node_modules/.bin/cypress open",
+    "cypress:ci": "./node_modules/.bin/cypress run --headless"
   },
   "eslintConfig": {
     "extends": [

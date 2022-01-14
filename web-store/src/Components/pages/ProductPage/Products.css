@@ -28,3 +28,7 @@
   float: center;
   margin: 5px;
 }
+.btn-primary {
+  background-color: seagreen;
+  border-color: seagreen;
+}

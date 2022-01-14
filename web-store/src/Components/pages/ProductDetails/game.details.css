@@ -1,0 +1,22 @@
+.review-container {
+  margin: auto;
+  width: 75%;
+}
+.review {
+  min-height: 100px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border-width: 2px;
+}
+.review-content {
+  width: 75%;
+  float: left;
+  height: 100%;
+}
+.review-info {
+  height: 100%;
+  float: right;
+  width: 25%;
+}

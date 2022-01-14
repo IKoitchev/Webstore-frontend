@@ -1,0 +1,19 @@
+.form {
+  margin: auto;
+  max-width: 1200px;
+  width: 50%;
+}
+h1 {
+  text-align: center;
+}
+#button-upload {
+  margin-top: 20px;
+  width: 20%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+}
+.form .btn {
+  text-align: center;
+}

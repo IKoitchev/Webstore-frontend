@@ -15,9 +15,6 @@ function GenreFilter(props) {
 
   useEffect(() => {
     setGenres(props.genres);
-    //console.log(myArray);
-    console.log(genres);
-    // props is the correct value, and setGenres refuses to set the state (????) here and on line 7 where it is declared
   }, []);
   return (
     <>
@@ -26,8 +23,7 @@ function GenreFilter(props) {
       ) : (
         <>
           <select id="dropdown" className="btn btn-dark" onChange={filter}>
-            {console.log(genres)}
-            <option defaultValue></option>
+            <option defaultValue placeholder="clear filter"></option>
             {props.genres.map((genre, i) => (
               <option value={genre} key={i}>
                 {genre}

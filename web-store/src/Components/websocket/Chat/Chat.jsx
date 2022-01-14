@@ -16,7 +16,6 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     height: "calc(100vh - 2rem)",
     width: "100%",
-    fixed: "top",
   },
   messageListContainer: {
     flex: 1,
@@ -99,10 +98,6 @@ function Chat({ userName }) {
     </div>
   );
 }
-
-Chat.propTypes = {
-  userName: PropTypes.string.isRequired,
-};
 
 Chat.defaultProps = {};
 

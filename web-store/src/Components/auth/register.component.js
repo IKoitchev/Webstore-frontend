@@ -202,7 +202,7 @@ export default class Register extends Component {
               }}
             />
             <div className="">
-              You don't have an account yet? Login <Link to="login">here</Link>
+              Already registered? Login <Link to="login">here</Link>
             </div>
           </Form>
         </div>

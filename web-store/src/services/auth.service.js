@@ -14,7 +14,7 @@ class AuthService {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }
-        console.log(this.getCurrentUser());
+
         return response.data;
       });
   }

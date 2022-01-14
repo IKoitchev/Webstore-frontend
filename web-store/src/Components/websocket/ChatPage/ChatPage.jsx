@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Paper from "@material-ui/core/Paper";
-import AuthService from "../../../services/auth.service";
-import { Redirect } from "react-router-dom";
+
 import Chat from "../Chat/Chat";
 import { makeStyles } from "@material-ui/core/styles";
 import NavBar from "../../Navbar/Navbar";
