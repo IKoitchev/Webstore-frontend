@@ -2,8 +2,6 @@ image: node:latest
 
 stages:
   - build
-  - docker
-  - test
   
 
 build:
@@ -18,15 +16,6 @@ build:
 
 
 
-test:
-  stage: test
-  image: node
-  script:
-    - cd web-store
-    - echo "Testing App"
-    - npm install
-    - npm run cypress:ci
-    - echo "Test successfully!"
 
 
     
