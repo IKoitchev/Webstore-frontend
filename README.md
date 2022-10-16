@@ -2,4 +2,4 @@
 
 This is the repository for the frontend of my Individual project. 
 Link to the backend(and documentation) repository:
-https://git.fhict.nl/I432549/s3-cb06-individual-backend
+https://github.com/IKoitchev/Webstore-Backend
